@@ -1,0 +1,63 @@
+//
+//  MHz.pch
+//  百思不得姐
+//
+//  Created by Minghe on 9/28/15.
+//  Copyright © 2015 project. All rights reserved.
+//
+
+#ifndef MHz_pch
+#define MHz_pch
+
+#ifdef __OBJC__ // OBJC: 只会出现在OC的源文件中
+
+/***********************************************************************************************************/
+#pragma mark -  <宏定义>
+/**
+ log相关的宏
+ */
+#ifdef DEBUG // 开发调试
+#define MHzLog(...) NSLog(__VA_ARGS__)
+#else // 打包发布阶段
+#define MHzLog(...)
+#endif
+
+#define MHzLogFunc MHzLog(@"%s",__func__);
+
+/**
+ *  写入plist文件
+ */
+#define MHzWriteToPlist(obj, filename) [obj writeToFile:[NSString stringWithFormat:@"/Users/minghe/Desktop/%@.plist", filename] atomically:YES];
+
+/**
+ *  颜色相关的宏
+ */
+#define MHzColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define MHzColorA(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define MHzRandomColor MHzColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255))
+#define MHzGrayColor(v) MHzColor(v, v, v)
+#define MHzCommonBgColor MHzGrayColor(206)
+
+/** 占位文字的颜色属性 */
+#define MHzPlaceholderColorKey @"placeholderLabel.textColor"
+/***********************************************************************************************************/
+#pragma mark -  <一般头文件>
+
+#import "MHzConst.h"
+
+
+/***********************************************************************************************************/
+#pragma mark -  <分类头文件>
+
+#import "UITextField+MHzExtension.h"
+#import "UIImage+MHzExtension.h"
+#import "UIImageView+MHzExtension.h"
+#import "NSString+MHzExtension.h"
+#import "UIView+MHzExtension.h"
+#import "NSDate+MHzExtension.h"
+
+/***********************************************************************************************************/
+
+#endif // OBJC
+
+#endif /* MHz_pch */
